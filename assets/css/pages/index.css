@@ -1,8 +1,20 @@
 .home .banner,
 .home .site-header {
-    background: #4183c4;
-    color: #fff
-}
+    background: linear-gradient(45deg, #ff4d4d, #ff3f7f, #ff1eb2);
+    background-size: 400% 400%;
+    animation: gradientBg 8s ease infinite;
+    }
+    @keyframes gradientBg {
+    0% {
+    background-position: 0 50%;
+    }
+    50% {
+    background-position: 100% 50%;
+    }
+    100% {
+    background-position: 0 50%;
+    }
+    }
 
 .home .banner .collection-head {
     color: #fff;

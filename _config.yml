@@ -2,10 +2,10 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: https://mekako.github.io/
+url: https://mekako.github.io
 date_format: "ordinal"
 title: MEKA的博客
-subtitle: "店铺公众号：柴犬谷屋"
+subtitle: "公众号：柴犬谷屋"
 description: "MEKA的个人博客，公众号：柴犬谷屋"
 keywords: MEKA, Game, Life, Coding
 timezone: Asia/Shanghai
