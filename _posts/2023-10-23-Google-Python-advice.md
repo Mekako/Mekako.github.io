@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 谷歌Python代码风格指南
+title: 谷歌   python代码风格指南
 categories: [Tutorial]
-description: Python是谷歌主要是用的动态语言，本风格指导列举了使用Python编程时应该做和不该做的事项
+description:    python是谷歌主要是用的动态语言，本风格指导列举了使用   python编程时应该做和不该做的事项
 keywords: pyhton, tutorial
 mermaid: false
 sequence: false
@@ -12,25 +12,25 @@ mindmap: false
 mindmap2: false
 ---
 
-# 谷歌Python代码风格指南 中文翻译
+# 谷歌   python代码风格指南 中文翻译
 Update: 2020.01.31
 
 Translator: [shendeguize@github](
 https://github.com/shendeguize)
 
 Link: [
-https://github.com/shendeguize/GooglePythonStyleGuideCN](
-https://github.com/shendeguize/GooglePythonStyleGuideCN)
+https://github.com/shendeguize/Google   pythonStyleGuideCN](
+https://github.com/shendeguize/Google   pythonStyleGuideCN)
 
 本翻译囿于水平，可能有不准确的地方，欢迎指出，谢谢大家
 
 *如有引用,请注明出处*
 ## 0 目录
 
-- - [谷歌Python代码风格指南 中文翻译](#谷歌python代码风格指南-中文翻译)
+- - [谷歌   python代码风格指南 中文翻译](#谷歌   python代码风格指南-中文翻译)
   - [0 目录](#0-目录)
   - [1 背景](#1-背景)
-  - [2 Python语言规则](#2-python语言规则)
+  - [2    python语言规则](#2-   python语言规则)
     - [2.1 Lint](#21-lint)
       - [2.1.1Definition(以下都译为定义)](#211definition以下都译为定义)
       - [2.1.2 Pros](#212-pros)
@@ -119,7 +119,7 @@ https://github.com/shendeguize/GooglePythonStyleGuideCN)
       - [2.19.2 Pros](#2192-pros)
       - [2.19.3 Cons](#2193-cons)
       - [2.19.4 定义](#2194-定义)
-    - [2.20 新版本Python: Python3 和从`__future__`import](#220-新版本python-python3-和从__future__import)
+    - [2.20 新版本   python:    python3 和从`__future__`import](#220-新版本   python-   python3-和从__future__import)
       - [2.20.1 定义](#2201-定义)
       - [2.20.2 Pros](#2202-pros)
       - [2.20.3 Cons](#2203-cons)
@@ -129,7 +129,7 @@ https://github.com/shendeguize/GooglePythonStyleGuideCN)
       - [2.21.2 Pros](#2212-pros)
       - [2.21.3 Cons](#2213-cons)
       - [2.21.4 建议](#2214-建议)
-  - [3 Python代码风格规范](#3-python代码风格规范)
+  - [3    python代码风格规范](#3-   python代码风格规范)
     - [3.1 分号](#31-分号)
     - [3.2 行长度](#32-行长度)
     - [3.3 括号](#33-括号)
@@ -178,18 +178,18 @@ https://github.com/shendeguize/GooglePythonStyleGuideCN)
   - [4 最后的话](#4-最后的话)
 
 ## 1 背景
-Python是谷歌主要是用的动态语言，本风格指导列举了使用Python编程时应该做和不该做的事项(dos & don'ts)
+   python是谷歌主要是用的动态语言，本风格指导列举了使用   python编程时应该做和不该做的事项(dos & don'ts)
 
-为了帮助你正确地组织代码,我们编写了一个[Vim的设置文件](https://google.github.io/styleguide/google_python_style.vim).对于Emacs,默认设置即可.
+为了帮助你正确地组织代码,我们编写了一个[Vim的设置文件](https://google.github.io/styleguide/google_   python_style.vim).对于Emacs,默认设置即可.
 
 许多团队使用[yapf](https://github.com/google/yapf/)自动格式工具来避免格式争议
-## 2 Python语言规则
+## 2    python语言规则
 
 ### 2.1 Lint
 对代码使用`pylint`
 
 #### 2.1.1Definition(以下都译为定义)
-`pylint`是一个用于在Python代码中发现bug和代码风格问题的工具,，`pylint`查找那些常在非动态语言(例如C或C++)编译器中捕获的问题.由于Python是动态语言,一些警告可能不正确,不过应该非常少有错误警告.
+`pylint`是一个用于在   python代码中发现bug和代码风格问题的工具,，`pylint`查找那些常在非动态语言(例如C或C++)编译器中捕获的问题.由于   python是动态语言,一些警告可能不正确,不过应该非常少有错误警告.
 
 #### 2.1.2 Pros
 能够发现一些易被遗漏的错误,类似拼写错误,调用早于声明等等.
@@ -208,7 +208,7 @@ c. 优化工具
 
 如果一些警告是不合适的,就抑制这些警告,这是为了让其他警告不会被隐藏.为了压制警告,可以设置行级别的注释:
 
-```Python
+```python
 dict = 'something awful'  # Bad Idea... pylint: disable=redefined-builtin
 ```
 
@@ -232,7 +232,7 @@ pylint --help-msg=C6409
 优先使用`pylint: disable`而非旧方法(`pylint: disable-msg`)
 如果要抑制由于参数未使用的警告,可以在函数开头del,并注释为什么要删除这些未使用参数,仅仅一句"unused"是不够的:
 
-```Python
+```python
 def viking_cafe_order(spam, beans, eggs=None):
     del beans, eggs  # Unused by vikings.
     return spam + spam + spa
@@ -253,14 +253,14 @@ def viking_cafe_order(spam, beans, eggs=None):
 模块名可能会有冲突,一些模块名可能很长,比较不方便
 
 #### 2.2.4 建议
-* ` import x`（当`x`是包或模块）
-* `from x import y` （当`x`是包前缀，`y`是不带前缀的模块名）
-* `from x import  y as z` （当有重复模块名`y`或`y`过长不利于引用的时候）
-* `import y as z` （仅在非常通用的简写的时候使用例如`import numpy as np`）
+* ` import x`（当`x`是包或模块）
+* `from x import y` （当`x`是包前缀，`y`是不带前缀的模块名）
+* `from x import  y as z` （当有重复模块名`y`或`y`过长不利于引用的时候）
+* `import y as z` （仅在非常通用的简写的时候使用例如`import numpy as np`）
 
 以`sound.effects.echo`为例:
 
-```Python
+```python
 from sound.effects import echo...echo.EchoFilter(input, output, delay=0.7, atten=4)
 ```
 
@@ -283,14 +283,14 @@ import示例应该像这样:
 
 **Yes:**
 
-```Python
+```python
 # Reference absl.flags in code with the complete name (verbose).
 # 在代码中使用完整路径调用absl.flags
 import absl.flagsfrom doctor.who import jodie
 
 FLAGS = absl.flags.FLAGS
 ```
-``` Python
+```    python
 # Reference flags in code with just the module name (common).
 # 在代码中只用包名来调用flags
 from absl import flagsfrom doctor.who import jodie
@@ -300,7 +300,7 @@ FLAGS = flags.FLAGS
 
 **No:**(假设文件在`doctor/who`中,`jodie.py`也在这里)
 
-```Python
+```python
 # Unclear what module the author wanted and what will be imported.  The actual
 # import behavior depends on external factors controlling sys.path.
 # Which possible jodie module did the author intend to import?
@@ -333,7 +333,7 @@ import jodie
 
 **Yes:**
 
-```Python
+```python
 def connect_to_next_port(self, minimum):
 """Connects to the next available port.
 
@@ -361,7 +361,7 @@ return port
 
 **No:**
 
-```Python
+```python
 def connect_to_next_port(self, minimum):
 """Connects to the next available port.
 
@@ -382,12 +382,12 @@ return port
     * 再次抛出这个异常
     * 在程序中异常不会继续但是会被记录以及消除(例如通过保护最外层的方式保护线程不会崩溃)的地方创造一个孤立点.
 
-    Python在这个方面容忍度很高,并且`except:`语句会捕获包括拼写错误,sys.exit(),Ctrl+C终止,单元测试失败和和所有你并没有想到捕获的其他异常.
+       python在这个方面容忍度很高,并且`except:`语句会捕获包括拼写错误,sys.exit(),Ctrl+C终止,单元测试失败和和所有你并没有想到捕获的其他异常.
 * 最精简`try/except`表达式内部的代码量,`try`代码块里的代码体量越大,月可能会在你不希望抛出异常的代码中抛出异常,进而在这种情况下,`try/except`掩盖了一个真实的异常
 * 使用finally来执行代码,这些代码无论是否有异常在`try`代码块被抛出都会被执行.这在清理(即关闭文件)时非常有用.
 * 当捕获了异常时,用as而不是逗号分段.
 
-```Python
+```python
 try:
     raise Error()
 except Error as error:
@@ -446,7 +446,7 @@ List, Dict和Set推导生成式以及生成器表达式提供了一个简明有�
 
 **Yes:**
 
-```Python
+```python
 result = [mapping_expr for value in iterable if filter_expr]
 
 result = [{'key': value} for value in iterable
@@ -481,7 +481,7 @@ eat(jelly_bean for jelly_bean in jelly_beans
 
 **No:**
 
-```Python
+```python
 result = [complicated_transform(
           x, some_argument=x+1)
           for x in iterable if predicate(x)]
@@ -509,11 +509,11 @@ return ((x, y, z)
 不能通过方法名来分辨类型,例如`has_key()`意味着字典,当然这也是一种优势.
 
 #### 建议
-对于支持的类型诸如列表,字典和文件,使用默认迭代器和操作符.内置类型同样定义了迭代器方法.优先使用这些方法而非那些返回列表的方法.除非能够确定在遍历容器的过程中不会改变容器.不要使用Python 2专有迭代方法除非必要.
+对于支持的类型诸如列表,字典和文件,使用默认迭代器和操作符.内置类型同样定义了迭代器方法.优先使用这些方法而非那些返回列表的方法.除非能够确定在遍历容器的过程中不会改变容器.不要使用   python 2专有迭代方法除非必要.
 
 **Yes:**
 
-```Python
+```python
 for key in adict: ...
 if key not in adict: ...
 if obj in alist: ...
@@ -524,7 +524,7 @@ for k, v in six.iteritems(adict): ...
 
 **No:**
 
-```Python
+```python
 for key in adict.keys(): ...
 if not adict.has_key(key): ...
 for line in afile.readlines(): ...
@@ -579,7 +579,7 @@ lambda在一个表达式内定义了匿名函数,而不在语句里.lambda表达
 
 **Yes:**
 
-```Python
+```python
 one_line = 'yes' if predicate(value) else 'no'
 slightly_split = ('yes' if predicate(value)
                   else 'no, nein, nyet')
@@ -591,7 +591,7 @@ the_longest_ternary_style_that_can_be_done = (
 
 **No:**
 
-```Python
+```python
 bad_line_breaking = ('yes' if predicate(value) else
                      'no')portion_too_long = ('yes'
                     if some_long_module.some_long_predicate_function(
@@ -606,7 +606,7 @@ bad_line_breaking = ('yes' if predicate(value) else
 在函数参数列表的最后可以为变量设定值,例如`def foo(a, b=0):`.如果`foo`在调用时只传入一个参数,那么`b`变量就被设定为0,如果调用时传入两个参数,那么`b`就被赋予第二个参数值.
 
 #### 2.12.2 Pros
-通常一个函数可能会有大量默认值,但是很少会有需要修改这些默认值的时候.默认值就提供了一个很简单满足上述情况的方式,而不需要为这些少见的情况重新定义很多函数.因为Python不支持重载方法或函数,默认参数是一个很简单的方式来"假重载"行为.
+通常一个函数可能会有大量默认值,但是很少会有需要修改这些默认值的时候.默认值就提供了一个很简单满足上述情况的方式,而不需要为这些少见的情况重新定义很多函数.因为   python不支持重载方法或函数,默认参数是一个很简单的方式来"假重载"行为.
 
 #### 2.12.3 Cons
 默认参数在模块加载时就被复制.这在参数是可变对象(例如列表或字典)时引发问题.如果函数修改了这些可变对象(例如向列表尾添加元素).默认值就被改变了.
@@ -616,7 +616,7 @@ bad_line_breaking = ('yes' if predicate(value) else
 
 **Yes:**
 
-```Python
+```python
 def foo(a, b=None):
     if b is None:
         b = []
@@ -629,7 +629,7 @@ def foo(a, b: Sequence = ()):  # Empty tuple OK since tuples are immutable 空�
 
 **No:**
 
-```Python
+```python
 def foo(a, b=[]):
     ...
 def foo(a, b=time.time()):  # The time the module was loaded??? 模块被加载的时间???
@@ -647,10 +647,10 @@ def foo(a, b: Mapping = {}):  # Could still get passed to unchecked code 仍可�
 一种装饰器调用来在计算比较轻量级时作为标准的属性访问来获取和设定一个属性的方式
 
 #### 2.13.2 Pros
-对于简单的属性访问,减少显式的get和set方法能够提升可读性.允许惰性计算.被认为是一种Python化的方式来维护类接口.在表现上,当直接对变量的访问更合理时,允许属性绕过所需的琐碎的访问方法.
+对于简单的属性访问,减少显式的get和set方法能够提升可读性.允许惰性计算.被认为是一种   python化的方式来维护类接口.在表现上,当直接对变量的访问更合理时,允许属性绕过所需的琐碎的访问方法.
 
 #### 2.13.3 Cons
-在Python2中必须继承于`object`,可能会隐藏像是操作符重载之类的副作用.对于子类而言,属性可能有些迷惑性.
+在   python2中必须继承于`object`,可能会隐藏像是操作符重载之类的副作用.对于子类而言,属性可能有些迷惑性.
 
 #### 2.13.4 建议
 在通常会有简单而且轻量级的访问和设定方法的新代码里使用属性来访问或设定数据.属性在创建时被`@property`装饰,参加[装饰器](https://google.github.io/styleguide/pyguide.html#s2.17-function-and-method-decorators)
@@ -659,7 +659,7 @@ def foo(a, b: Mapping = {}):  # Could still get passed to unchecked code 仍可�
 
 **Yes:**
 
-```Python
+```python
 class Square(object):
     """A square with two properties: a writable area and a read-only perimeter.
 
@@ -705,10 +705,10 @@ class Square(object):
 只要可能,就使用隐式False的if语句
 
 #### 2.14.1 定义
-在布尔环境下,Python对某些值判定为False,一个快速的经验规律是所有"空"值都被认为是False,所以`0, None, [], {}, ''`的布尔值都是False
+在布尔环境下,   python对某些值判定为False,一个快速的经验规律是所有"空"值都被认为是False,所以`0, None, [], {}, ''`的布尔值都是False
 
 #### 2.14.2 Pros
-使用Python布尔类型的条件语句可读性更好而且更难出错,大多数情况下,这种方式也更快.
+使用   python布尔类型的条件语句可读性更好而且更难出错,大多数情况下,这种方式也更快.
 
 #### 2.14.3 Cons
 对于C/C++开发者而言可能有些奇怪
@@ -717,13 +717,13 @@ class Square(object):
 如果可能的话,使用隐式False.例如使用`if foo:`而非`if foo != []:`下面列举了一些你应该牢记的警告:
 
 * 使用`if foo is None`(或者`if foo is not None`)来检查`None`.例如在检查一个默认值是`None`的变量或者参数是否被赋予了其他值的时候,被赋予的其他值的布尔值可能为False.
-* 不要用`==`来和布尔值为`False`的变量比较,使用`if not x`,如果需要区别`False`和`None`,那么使用链式的表达式如`if not x and x is not None`
+* 不要用`==`来和布尔值为`False`的变量比较,使用`if not x`,如果需要区别`False`和`None`,那么使用链式的表达式如`if not x and x is not None`
 * 对于序列(如字符串,列表,元组),利用空序列为`False`的事实,故而相应地使用`if seq:`和`if not seq:`而非`if len(seq)`或`if not len(seq):`.
 * 在处理整数时,隐式的False可能会引入更多风险(例如意外地将`None`和0进行了相同的处理)你可以用一个已知是整形(并且不是`len()`的结果)的值和整数0比较.
 
 **Yes:**
 
-```Python
+```python
 if not users:
     print('no users')
 
@@ -740,7 +740,7 @@ def f(x=None):
 
 **No:**
 
-```Python
+```python
 if len(users) == 0:
     print('no users')
 
@@ -758,14 +758,14 @@ def f(x=None):
 尽可能利用字符串方法而非`string`模块.使用函数调用语法而非`apply`.在函数参数本就是一个行内匿名函数的时候,使用列表推导表达式和for循环而非`filter`和`map`
 
 #### 2.15.1 定义
-当前Python版本提供了人们普遍更倾向的构建方式.
+当前   python版本提供了人们普遍更倾向的构建方式.
 
 #### 2.15.2 建议
-我们不使用任何不支持这些特性的Python版本,因而没有理由不使用新方式.
+我们不使用任何不支持这些特性的   python版本,因而没有理由不使用新方式.
 
 **Yes:**
 
-```Python
+```python
 words = foo.split(':')
 
 [x[1] for x in my_list if x[2] == 5]
@@ -776,7 +776,7 @@ fn(*args, **kwargs)
 ```
 
 **No:**
-```Python
+```python
 words = string.split(foo, ':')
 
 map(lambda x: x[1], filter(lambda x: x[2] == 5, my_list))
@@ -788,10 +788,10 @@ apply(fn, args, kwargs)
 可以使用
 
 #### 2.16.1 定义
-一个内嵌Python函数可以引用在闭包命名空间内定义的变量,但是不能对其复制.变量绑定是解析到使用词法作用域的,即基于静态程序文本.任何对块内命名的赋值都会让Python将对于这个命名的引用都作为局部变量,即使在使用先于赋值的情况下也是.如果有全局声明,这个命名就会被认为是全局变量.
+一个内嵌   python函数可以引用在闭包命名空间内定义的变量,但是不能对其复制.变量绑定是解析到使用词法作用域的,即基于静态程序文本.任何对块内命名的赋值都会让   python将对于这个命名的引用都作为局部变量,即使在使用先于赋值的情况下也是.如果有全局声明,这个命名就会被认为是全局变量.
 
 一个使用这个特性的例子是:
-```Python
+```python
 def get_adder(summand1):
     """Returns a function that adds numbers to a given number."""
     def adder(summand2):
@@ -804,9 +804,9 @@ def get_adder(summand1):
 经常可以让代码更简明优雅,尤其会让有经验的Lisp和Scheme(以及Haskell和ML还有其他)的程序要很舒服.
 
 #### 2.16.3 Cons
-可能会导致令人迷惑的bug例如这个基于[PEP-0227](http://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0227/)的例子.
+可能会导致令人迷惑的bug例如这个基于[PEP-0227](http://www.google.com/url?sa=D&q=http://www.   python.org/dev/peps/pep-0227/)的例子.
 
-```Python
+```python
 i = 4
 def foo(x):
     def bar():
@@ -828,9 +828,9 @@ def foo(x):
 在明显有好处时,谨慎明智的使用，避免`@staticmethod`，控制使用`@classmethod`
 
 #### 2.17.1 定义
-[函数和方法装饰器](https://docs.python.org/3/glossary.html#term-decorator)(也就是`@`记号).一个常见的装饰器是`@property`,用于将普通方法转换成动态计算属性.然而装饰器语法也允许用户定义装饰器,尤其对于一些函数`my_decorator`如下:
+[函数和方法装饰器](https://docs.   python.org/3/glossary.html#term-decorator)(也就是`@`记号).一个常见的装饰器是`@property`,用于将普通方法转换成动态计算属性.然而装饰器语法也允许用户定义装饰器,尤其对于一些函数`my_decorator`如下:
 
-```Python
+```python
 class C(object):
     @my_decorator
     def method(self):
@@ -839,7 +839,7 @@ class C(object):
 
 是等效于
 
-```Python
+```python
 class C(object):
     def method(self):
         # method body ...
@@ -866,7 +866,7 @@ class C(object):
 ### 2.18 线程
 不要依赖于内建类型的原子性
 
-尽管Python内置数据类型例如字典等似乎有原子性操作,仍有一些罕见情况下,他们是非原子的(比如,如果`__hash__`或者`__eq__`被实现为Python方法),就不应该依赖于这些类型的原子性.也不应该依赖于原子变量赋值(因为这依赖于字典)
+尽管   python内置数据类型例如字典等似乎有原子性操作,仍有一些罕见情况下,他们是非原子的(比如,如果`__hash__`或者`__eq__`被实现为   python方法),就不应该依赖于这些类型的原子性.也不应该依赖于原子变量赋值(因为这依赖于字典)
 
 优先使用Queue模块的`Queue`类来作为线程之间通讯数据的方式.此外,要是用threading模块和其locking primitives(锁原语).了解条件变量的合理用法以便于使用`threading.Condition`而非使用更低级的锁.
 
@@ -874,7 +874,7 @@ class C(object):
 尽量避免使用
 
 #### 2.19.1 定义
-Python是一种非常灵活的语言并且提供了很多新奇的特性,诸如定制元类,访问字节码,动态编译,动态继承,对象父类重定义,import hacks,反射(例如一些对于`getattr()`的应用),系统内置的修改等等.
+   python是一种非常灵活的语言并且提供了很多新奇的特性,诸如定制元类,访问字节码,动态编译,动态继承,对象父类重定义,import hacks,反射(例如一些对于`getattr()`的应用),系统内置的修改等等.
 
 #### 2.19.2 Pros
 这些是非常强大的语言特性,可以让程序更紧凑
@@ -887,14 +887,14 @@ Python是一种非常灵活的语言并且提供了很多新奇的特性,诸如�
 
 内部使用这些特性的标准库和类是可以使用的(例如`abc.ABCMeta`,`collections.namedtuple`,和`enum`)
 
-### 2.20 新版本Python: Python3 和从`__future__`import
-Python3已经可用了(译者:目前Python2已经不受支持了),尽管不是每个项目都准备好使用Python3,所有的代码应该兼容Python3并且在可能的情况下在Python3的环境下测试.
+### 2.20 新版本   python:    python3 和从`__future__`import
+   python3已经可用了(译者:目前   python2已经不受支持了),尽管不是每个项目都准备好使用   python3,所有的代码应该兼容   python3并且在可能的情况下在   python3的环境下测试.
 
 #### 2.20.1 定义
-Python3是Python的重大改变,尽管现有代码通常是Python2.7写成的,但可以做一些简单的事情来让代码更加明确地表达其意图,从而可以让代码更好地在Python3下运行而不用调整.
+   python3是   python的重大改变,尽管现有代码通常是   python2.7写成的,但可以做一些简单的事情来让代码更加明确地表达其意图,从而可以让代码更好地在   python3下运行而不用调整.
 
 #### 2.20.2 Pros
-在考虑Python3编写的代码更清晰明确，一旦所有依赖已就绪，就可以更容易在Python3环境下运行.
+在考虑   python3编写的代码更清晰明确，一旦所有依赖已就绪，就可以更容易在   python3环境下运行.
 
 #### 2.20.3 Cons
 一些人会认为默认样板有些丑,import实际不需要的特性到模块中是不常见的.
@@ -905,37 +905,37 @@ Python3是Python的重大改变,尽管现有代码通常是Python2.7写成的,�
 
 鼓励使用`from __future__ import`语句.所有新代码都应该包含下述代码,而现有代码应该被更新以尽可能兼容:
 
-```Python
+```python
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 ```
 
-如果你不太熟悉这些,详细阅读这些:[绝对import](https://www.python.org/dev/peps/pep-0328/),[新的`/`除法行为](https://www.python.org/dev/peps/pep-0238/),和[`print`函数](https://www.python.org/dev/peps/pep-3105/)
+如果你不太熟悉这些,详细阅读这些:[绝对import](https://www.   python.org/dev/peps/pep-0328/),[新的`/`除法行为](https://www.   python.org/dev/peps/pep-0238/),和[`print`函数](https://www.   python.org/dev/peps/pep-3105/)
 
-请勿省略或移除这些import,即使在模块中他们没有在使用,除非代码只用于Python3.最好总是在所有的文档中都有从future的import,来保证不会在有人使用在后续编辑时遗忘.
+请勿省略或移除这些import,即使在模块中他们没有在使用,除非代码只用于   python3.最好总是在所有的文档中都有从future的import,来保证不会在有人使用在后续编辑时遗忘.
 
-有其他的`from __future__`import语句,看喜好使用.我们的建议中不包含`unicode_literals`因为其并无明显优势,这是由于隐式默认的编码转换导致其在Python2.7内很多地方被引入了,必要时,大多数代码最好显式的使用`b''`和`u''`btyes和unicode字符串表示.(译者:这段翻译可能不准确)
+有其他的`from __future__`import语句,看喜好使用.我们的建议中不包含`unicode_literals`因为其并无明显优势,这是由于隐式默认的编码转换导致其在   python2.7内很多地方被引入了,必要时,大多数代码最好显式的使用`b''`和`u''`btyes和unicode字符串表示.(译者:这段翻译可能不准确)
 
 **The six, future, or past libraries**
 
-当项目需要支持Python2和3时,根据需求使用[six](https://pypi.org/project/six/),[future](https://pypi.org/project/future/)和[past](https://pypi.org/project/past/).
+当项目需要支持   python2和3时,根据需求使用[six](https://pypi.org/project/six/),[future](https://pypi.org/project/future/)和[past](https://pypi.org/project/past/).
 
 ### 2.21 带有类型注释的代码
-可以根据[PEP-484](https://www.python.org/dev/peps/pep-0484/)对Python3代码进行类型注释,并且在build时用类型检查工具例如[pytype](https://github.com/google/pytype)进行类型检查.
+可以根据[PEP-484](https://www.   python.org/dev/peps/pep-0484/)对   python3代码进行类型注释,并且在build时用类型检查工具例如[pytype](https://github.com/google/pytype)进行类型检查.
 
-类型注释可以在源码中或[stub pyi file](https://www.python.org/dev/peps/pep-0484/#stub-files)中.只要可能,注释就应写在源代码中.对于第三方或拓展模块使用pyi文件.
+类型注释可以在源码中或[stub pyi file](https://www.   python.org/dev/peps/pep-0484/#stub-files)中.只要可能,注释就应写在源代码中.对于第三方或拓展模块使用pyi文件.
 
 #### 2.21.1 定义
 类型注释(也称为"类型提示")是用于函数或方法参数和返回值的:
 
-```Python
+```python
 def func(a: int) -> List[int]:
 ```
 
 你也可以声明用一个单独的注释来声明变量的类型:
 
-```Python
+```python
 a = SomeFunc()  # type: SomeType
 ```
 #### 2.21.2 Pros
@@ -945,9 +945,9 @@ a = SomeFunc()  # type: SomeType
 需要不断更新类型声明,对于认为有效的代码可能会报类型错误,使用[类型检查](https://github.com/google/pytype)可能减少使用[过于强力特性](https://google.github.io/styleguide/pyguide.html#power-features)的能力.
 
 #### 2.21.4 建议
-强烈鼓励在更新代码的时候进行Python类型分析.在对公共API进行补充和修改时,包括python类型声明并通过构建系统中的pytype进行检查.对Python来说静态类型检查比较新,我们承认,一些意料外的副作用(例如错误推断的类型)可能拒绝一些项目的使用.这种情况下,鼓励作者适当地增加一个带有TODO或到bug描述当前不接搜的类型注释的链接到BUILD文件或者在代码内.
+强烈鼓励在更新代码的时候进行   python类型分析.在对公共API进行补充和修改时,包括   python类型声明并通过构建系统中的pytype进行检查.对   python来说静态类型检查比较新,我们承认,一些意料外的副作用(例如错误推断的类型)可能拒绝一些项目的使用.这种情况下,鼓励作者适当地增加一个带有TODO或到bug描述当前不接搜的类型注释的链接到BUILD文件或者在代码内.
 
-## 3 Python代码风格规范
+## 3    python代码风格规范
 
 ### 3.1 分号
 不要在行尾加分号，也不要用分号把两行语句合并到一行
@@ -963,7 +963,7 @@ a = SomeFunc()  # type: SomeType
 
 不要使用反斜杠连接,除非对于需要三层或以上的上下文管理器`with`语句
 
-利用Python的[implicit line joining inside parentheses, brackets and braces](http://docs.python.org/reference/lexical_analysis.html#implicit-line-joining)(隐式行连接方法--括号连接,包括`(), [], {}`).如果必要的话,也可在表达式外面额外添加一对括号.
+利用   python的[implicit line joining inside parentheses, brackets and braces](http://docs.   python.org/reference/lexical_analysis.html#implicit-line-joining)(隐式行连接方法--括号连接,包括`(), [], {}`).如果必要的话,也可在表达式外面额外添加一对括号.
 
 **Yes:**
 
@@ -977,7 +977,7 @@ if (width == 0 and height == 0 and
 
 当字符串不能在一行内完成时,使用括号来隐式连接行:
 
-```Python
+```python
 x = ('This will build a very long long '
      'long long long long long long string')
 ```
@@ -986,14 +986,14 @@ x = ('This will build a very long long '
 
 **Yes:**
 
-```Python
+```python
 # See details at
 # http://www.example.com/us/developer/documentation/api/content/v2.0/csv_file_name_extension_full_specification.html
 ```
 
 **No:**
 
-```Python
+```python
 # See details at
 # http://www.example.com/us/developer/documentation/api/content/\
 # v2.0/csv_file_name_extension_full_specification.html
@@ -1003,7 +1003,7 @@ x = ('This will build a very long long '
 
 **Yes:**
 
-```Python
+```python
 with very_long_first_expression_function() as spam, \
      very_long_second_expression_function() as beans, \
      third_thing() as eggs:
@@ -1015,7 +1015,7 @@ with very_long_first_expression_function() as spam:
 ```
 
 **No:**
-```Python
+```python
 with VeryLongFirstExpressionFunction() as spam, \
      VeryLongSecondExpressionFunction() as beans:
     PlaceOrder(eggs, beans, spam, beans)
@@ -1032,7 +1032,7 @@ with VeryLongFirstExpressionFunction() as spam, \
 
 **Yes:**
 
-```Python
+```python
 if foo:
     bar()
 while x:
@@ -1051,7 +1051,7 @@ for (x, y) in dict.items(): ...
 
 **No:**
 
-```Python
+```python
 if (x):
     bar()
 if not(x):
@@ -1066,7 +1066,7 @@ return (foo)
 
 **Yes:**
 
-```Python
+```python
 # Aligned with opening delimiter
 # 和opening delimiter对齐(译者理解是分隔符的入口,例如三种括号,字符串引号等)
 foo = long_function_name(var_one, var_two,
@@ -1099,7 +1099,7 @@ foo = {
 ```
 
 **No:**
-```Python
+```python
 # Stuff on first line forbidden
 # 首行不允许有内容
 foo = long_function_name(var_one, var_two,
@@ -1121,11 +1121,11 @@ foo = {
 ```
 
 #### 3.4.1 关于尾后逗号
-关于在一序列元素中的尾号逗号,只推荐在容器结束符号`]`,`)`或者`}`和最后元素不在同一行时使用.尾后逗号的存在也被用作我们Python代码自动格式化工具[yapf](https://github.com/google/yapf/)的提示,在`,`最后元素之后出现的时候来自动调整容器元素到每行一个元素.
+关于在一序列元素中的尾号逗号,只推荐在容器结束符号`]`,`)`或者`}`和最后元素不在同一行时使用.尾后逗号的存在也被用作我们   python代码自动格式化工具[yapf](https://github.com/google/yapf/)的提示,在`,`最后元素之后出现的时候来自动调整容器元素到每行一个元素.
 
 **Yes:**
 
-```Python
+```python
 golomb3 = [0, 1, 3]
 golomb4 = [
     0,
@@ -1137,7 +1137,7 @@ golomb4 = [
 
 **No:**
 
-```Python
+```python
 golomb4 = [
     0,
     1,
@@ -1155,13 +1155,13 @@ golomb4 = [
 
 **Yes:**
 
-```Python
+```python
 spam(ham[1], {eggs: 2}, [])
 ```
 
 **No:**
 
-```Python
+```python
 spam( ham[ 1 ], { eggs: 2 }, [ ] )
 ```
 
@@ -1169,7 +1169,7 @@ spam( ham[ 1 ], { eggs: 2 }, [ ] )
  
 **Yes:**
 
-```Python
+```python
 if x == 4:
     print(x, y)
 x, y = y, x
@@ -1177,7 +1177,7 @@ x, y = y, x
 
 **No:**
 
-```Python
+```python
 if x == 4 :
     print(x , y)
 x , y = y , x
@@ -1187,14 +1187,14 @@ x , y = y , x
 
 **Yes:**
 
-```Python
+```python
 spam(1)
 dict['key'] = list[index]
 ```
 
 **No:**
 
-```Python
+```python
 spam (1)
 dict ['key'] = list [index]
 ```
@@ -1206,13 +1206,13 @@ dict ['key'] = list [index]
 
 **Yes:**
 
-```Python
+```python
 x == 1
 ```
 
 **No:**
 
-```Python
+```python
 x<1
 ```
 
@@ -1220,14 +1220,14 @@ x<1
 
 **Yes:**
 
-```Python
+```python
 def complex(real, imag=0.0): return Magic(r=real, i=imag)
 def complex(real, imag: float = 0.0): return Magic(r=real, i=imag)
 ```
 
 **No:**
 
-```Python
+```python
 def complex(real, imag = 0.0): return Magic(r = real, i = imag)
 def complex(real, imag: float=0.0): return Magic(r = real, i = imag)
 ```
@@ -1236,7 +1236,7 @@ def complex(real, imag: float=0.0): return Magic(r = real, i = imag)
 
 **Yes:**
 
-```Python
+```python
 foo = 1000  # comment
 long_name = 2  # comment that should not be aligned
 dictionary = {
@@ -1247,7 +1247,7 @@ dictionary = {
 
 **No:**
 
-```Python
+```python
 foo       = 1000  # comment
 long_name = 2     # comment that should not be aligned
 
@@ -1258,15 +1258,15 @@ dictionary = {
 ```
 
 ### 3.7 Shebang
-大部分`.py`文件不需要从`#!`行来开始.根据[PEP-394](https://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0394/),程序的主文件应该以`#!/usr/bin/python2`或`#!/usr/bin/python3`起始
+大部分`.py`文件不需要从`#!`行来开始.根据[PEP-394](https://www.google.com/url?sa=D&q=http://www.   python.org/dev/peps/pep-0394/),程序的主文件应该以`#!/usr/bin/   python2`或`#!/usr/bin/   python3`起始
 
-这行被用于帮助内核找到Python解释器,但是在导入模块时会被Python忽略/只在会被直接运行的文件里有必要写.
+这行被用于帮助内核找到   python解释器,但是在导入模块时会被   python忽略/只在会被直接运行的文件里有必要写.
 
 ### 3.8 注释和文档字符串
 确保使用正确的模块,函数,方法的文档字符串和行内注释.
 
 #### 3.8.1 文档字符串
-Python使用*文档字符串*来为代码生成文档.文档字符串是包,模块,类或函数的首个语句.这些字符串能够自动被`__doc__`成员方法提取并且被`pydoc`使用.(尝试在你的模块上运行`pydoc`来看看具体是什么).文档字符串使用三重双引号`"""`(根据[PEP-257](https://www.google.com/url?sa=D&q=http://www.python.org/dev/peps/pep-0257/)).文档字符串应该这样组织:一行总结(或整个文档字符串只有一行)并以句号,问好或感叹号结尾.随后是一行空行,随后是文档字符串,并与第一行的首个引号位置相对齐.更多具体格式规范如下.
+   python使用*文档字符串*来为代码生成文档.文档字符串是包,模块,类或函数的首个语句.这些字符串能够自动被`__doc__`成员方法提取并且被`pydoc`使用.(尝试在你的模块上运行`pydoc`来看看具体是什么).文档字符串使用三重双引号`"""`(根据[PEP-257](https://www.google.com/url?sa=D&q=http://www.   python.org/dev/peps/pep-0257/)).文档字符串应该这样组织:一行总结(或整个文档字符串只有一行)并以句号,问好或感叹号结尾.随后是一行空行,随后是文档字符串,并与第一行的首个引号位置相对齐.更多具体格式规范如下.
 
 #### 3.8.2 模块
 每个文件都应包含许可模板.选择合适的许可模板用于项目(例如
@@ -1274,7 +1274,7 @@ Apache 2.0,BSD,LGPL,GPL)
 
 文档应该以文档字符串开头,并描述模块的内容和使用方法.
 
-```Python
+```python
 """A one line summary of the module or program, terminated by a period.
 
 Leave one blank line.  The rest of this docstring should contain an
@@ -1317,7 +1317,7 @@ examples.
 
 列出所有和接口相关的异常.对于违反文档要求而抛出的异常不应列出.(因为这会矛盾地使得违反接口要求的行为成为接口的一部分)
 
-```Python
+```python
 def fetch_bigtable_rows(big_table, keys, other_silly_variable=None):
     """Fetches rows from a Bigtable.
 
@@ -1352,7 +1352,7 @@ def fetch_bigtable_rows(big_table, keys, other_silly_variable=None):
 #### 3.8.4 类
 类定义下一行应为描述这个类的文档字符串.如果类有公共属性,应该在文档字符串中的`Attributes`节中注明,并且和[函数的`Args`](https://google.github.io/styleguide/pyguide.html#doc-function-args)一节风格统一.
 
-```Python
+```python
 class SampleClass(object):
     """Summary of class here.
 
@@ -1376,7 +1376,7 @@ class SampleClass(object):
 #### 3.8.5 块注释和行注释
 最后要在代码中注释的地方是代码技巧性的部分.如果你将要在下次[code review](http://en.wikipedia.org/wiki/Code_review)中揭示代码.应该现在就添加注释.在复杂操作开始前,注释几行.对于不够明晰的代码在行尾注释.
 
-```Python
+```python
 # We use a weighted dictionary search to find out where i is in
 # the array.  We extrapolate position based on the largest num
 # in the array and the array size and then do binary search to
@@ -1386,7 +1386,7 @@ if i & (i-1) == 0:  # True if i is 0 or a power of 2.
 
 为了提升易读性,行注释应该至少在代码2个空格后,并以`#`后接至少1个空格开始注释部分.
 
-另外,不要描述代码,假定阅读代码的人比你更精通Python(他只是不知道你试图做什么).
+另外,不要描述代码,假定阅读代码的人比你更精通   python(他只是不知道你试图做什么).
 
 #### 3.8.6 标点,拼写和语法
 注意标点,拼写和语法,写得好的注释要比写得差的好读.
@@ -1400,7 +1400,7 @@ if i & (i-1) == 0:  # True if i is 0 or a power of 2.
 
 **Yes:**
 
-```Python
+```python
 class SampleClass(object):
     pass
 
@@ -1414,7 +1414,7 @@ class ChildClass(ParentClass):
 
 **No:**
 
-```Python
+```python
 class SampleClass:
     pass
 
@@ -1423,25 +1423,25 @@ class OuterClass:
         pass
 ```
 
-从`object`类继承保证了属性能够在Python2正确运行并且保护代码在Python3下出现潜在的不兼容.这样也定义了object包括`__new__`,`__init__`,`__delattr__`,`__getattribute__`,`__setattr__`,`__hash__`,`__repr__`,和`__str__`等默认特殊方法的实现.
+从`object`类继承保证了属性能够在   python2正确运行并且保护代码在   python3下出现潜在的不兼容.这样也定义了object包括`__new__`,`__init__`,`__delattr__`,`__getattribute__`,`__setattr__`,`__hash__`,`__repr__`,和`__str__`等默认特殊方法的实现.
 
 ### 3.10 字符串
 使用`format`或`%`来格式化字符串,即使参数都是字符串对象,也要考虑使用`+`还是`%`及`format`.
 
 **Yes:**
 
-```Python
+```python
 x = a + b
 x = '%s, %s!' % (imperative, expletive)
 x = '{}, {}'.format(first, second)
 x = 'name: %s; score: %d' % (name, n)
 x = 'name: {}; score: {}'.format(name, n)
-x = f'name: {name}; score: {n}'  # Python 3.6+
+x = f'name: {name}; score: {n}'  #    python 3.6+
 ```
 
 **No:**
 
-```Python
+```python
 employee_table = '<table>'
 for last_name, first_name in employee_list:
     employee_table += '<tr><td>%s, %s</td></tr>' % (last_name, first_name)
@@ -1452,7 +1452,7 @@ employee_table += '</table>'
 
 **Yes:**
 
-```Python
+```python
 items = ['<table>']
 for last_name, first_name in employee_list:
     items.append('<tr><td>%s, %s</td></tr>' % (last_name, first_name))
@@ -1462,7 +1462,7 @@ employee_table = ''.join(items)
 
 **No:**
 
-```Python
+```python
 employee_table = '<table>'
 for last_name, first_name in employee_list:
     employee_table += '<tr><td>%s, %s</td></tr>' % (last_name, first_name)
@@ -1473,27 +1473,27 @@ employee_table += '</table>'
 
 **Yes:**
 
-```Python
-Python('Why are you hiding your eyes?')
+```python
+   python('Why are you hiding your eyes?')
 Gollum("I'm scared of lint errors.")
-Narrator('"Good!" thought a happy Python reviewer.')
+Narrator('"Good!" thought a happy    python reviewer.')
 ```
 
 **No:**
 
-```Python
-Python("Why are you hiding your eyes?")
+```python
+   python("Why are you hiding your eyes?")
 Gollum('The lint. It burns. It burns us.')
 Gollum("Always the great lint. Watching. Watching.")
 ```
 
 多行字符串多行字符串优先使用"""而非`'''`,当且只当对所有非文档字符串的多行字符串都是用`'''`而且对正常字符串都使用`'`时才可使用三单引号.docstring不论如何必须使用`"""`
 
-多行字符串和其余代码的缩进方式不一致.如果需要避免在字符串中插入额外的空格,要么使用单行字符串连接或者带有[`textwarp.dedent()`](https://docs.python.org/3/library/textwrap.html#textwrap.dedent)的多行字符串来移除每行的起始空格.
+多行字符串和其余代码的缩进方式不一致.如果需要避免在字符串中插入额外的空格,要么使用单行字符串连接或者带有[`textwarp.dedent()`](https://docs.   python.org/3/library/textwrap.html#textwrap.dedent)的多行字符串来移除每行的起始空格.
 
 **No:**
 
-```Python
+```python
 long_string = """This is pretty ugly.
 Don't do this.
 """
@@ -1501,7 +1501,7 @@ Don't do this.
 
 **Yes:**
 
-```Python
+```python
 long_string = """This is fine if your use case can accept
     extraneous leading spaces."""
 
@@ -1529,12 +1529,12 @@ long_string = textwrap.dedent("""\
 
 此外,当文件或socket在文件对象被销毁的同时被自动关闭的时候,是不可能将文件的生命周期和文件状态绑定的:
 
-* 不能保证何时会真正将文件对象销毁.不同的Python解释器使用的内存管理技术不同,例如延时垃圾处理可能会让对象的生命周期被无限期延长.
+* 不能保证何时会真正将文件对象销毁.不同的   python解释器使用的内存管理技术不同,例如延时垃圾处理可能会让对象的生命周期被无限期延长.
 * 可能导致意料之外地对文件对象的引用,例如在全局变量或者异常回溯中,可能会让文件对象比预计的生命周期更长.
 
-推荐使用[with语句](http://docs.python.org/reference/compound_stmts.html#the-with-statement)管理文件:
+推荐使用[with语句](http://docs.   python.org/reference/compound_stmts.html#the-with-statement)管理文件:
 
-```Python
+```python
 with open("hello.txt") as hello_file:
     for line in hello_file:
         print(line)
@@ -1542,10 +1542,10 @@ with open("hello.txt") as hello_file:
 
 对于类似文件的对象,如果不支持with语句的可以使用`contextlib.closing()`:
 
-```Python
+```python
 import contextlib
 
-with contextlib.closing(urllib.urlopen("http://www.python.org/")) as front_page:
+with contextlib.closing(urllib.urlopen("http://www.   python.org/")) as front_page:
     for line in front_page:
         print(line)
 ```
@@ -1557,7 +1557,7 @@ with contextlib.closing(urllib.urlopen("http://www.python.org/")) as front_page:
 
 有统一风格的`TODO`的目的是为了方便搜索并了解如何获取更多相关细节.`TODO`并不是保证被提及者会修复问题.因此在创建`TODO`注释的时候,基本上都是给出你的名字.
 
-```Python
+```python
 # TODO(kl@gmail.com): Use a "*" here for string repetition.
 # TODO(Zeke) Change this to use relations.
 ```
@@ -1569,22 +1569,22 @@ imports应该在不同行.例如:
 
 **Yes:**
 
-```Python
+```python
 import os
 import sys
 ```
 
 **No:**
 
-```Python
+```python
 import os, sys
 ```
 
 import应集中放在文件顶部,在模块注释和docstring后面,模块globals和常量前面.应按照从最通用到最不通用的顺序排列分组:
 
-1. Python未来版本import语句,例如:    
+1.    python未来版本import语句,例如:    
     
-    >   ```Python
+    >   ```python
     >    from __future__ import absolute_import
     >    from __future__ import division
     >    from __future__ import print_function
@@ -1592,33 +1592,33 @@ import应集中放在文件顶部,在模块注释和docstring后面,模块global
     
     >    更多信息参看[上文](https://google.github.io/styleguide/pyguide.html#from-future-imports)
         
-2. Python标准基础库import,例如:
+2.    python标准基础库import,例如:
     
-    >    ```Python
+    >    ```python
     >    import sys
     >    ```
 
 3. 第三方库或包的import,例如:
     
-    >    ```Python
+    >    ```python
     >    import tensorflow as tf
     >    ```
     
 4. 代码库内子包import,例如:
     
-    >    ```Python
+    >    ```python
     >    from otherproject.ai import mind
     >    ```
     
 5. **此条已弃用**:和当前文件是同一顶级子包专用的import,例如:
-    >    ```Python
+    >    ```python
     >    from myproject.backend.hgwells import time_machine
     >    ```
     
-    在旧版本的谷歌Python代码风格指南中实际上是这样做的.但是现在不再需要了.**新的代码风格不再受此困扰.**简单的将专用的子包import和其他子包import同一对待即可.
+    在旧版本的谷歌   python代码风格指南中实际上是这样做的.但是现在不再需要了.**新的代码风格不再受此困扰.**简单的将专用的子包import和其他子包import同一对待即可.
 
 在每个组内按照每个模块的完整包路径的字典序忽略大小写排序.可以根据情况在每个节质检增加空行.
-```Python
+```python
 import collectionsimport queueimport sys
 
 from absl import appfrom absl import flagsimport bs4import cryptographyimport tensorflow as tf
@@ -1638,13 +1638,13 @@ from book.genres import scififrom myproject.backend.hgwells import time_machinef
 
 **Yes:**
 
-```Python
+```python
 if foo: bar(foo)
 ```
 
 **No:**
 
-```Python
+```python
 if foo: bar(foo)
 else:   baz(foo)
 
@@ -1671,7 +1671,7 @@ except ValueError: baz(foo)
 #### 3.16.1 要避免的名字：
 * 单字符名字,除非是计数或迭代元素,e可以作为Exception捕获识别名来使用..
 * `-`横线,不应出现在任何包名或模块名内
-* `__double_leading_and_trailing_underscore__`首尾都双下划线的名字,这种名字是python的内置保留名字
+* `__double_leading_and_trailing_underscore__`首尾都双下划线的名字,这种名字是   python的内置保留名字
 
 #### 3.16.4 命名约定
 *  internal表示仅模块内可用、或者类内保护的或者私有的
@@ -1700,15 +1700,15 @@ except ValueError: baz(foo)
 | 函数/方法参数 | `lower_with_under` |  |
 | 局部变量 | `lower_with_under` |  |
 
-尽管Python支持通过双下划线`__`(即"dunder")来私有化.不鼓励这样做.优先使用单下划线.单下划线更易于打出来、易读、易于小的单元测试调用.Lint的警告关注受保护成员的无效访问.
+尽管   python支持通过双下划线`__`(即"dunder")来私有化.不鼓励这样做.优先使用单下划线.单下划线更易于打出来、易读、易于小的单元测试调用.Lint的警告关注受保护成员的无效访问.
 
 
 ### 3.17 Main
 即便是一个用做脚本的py文件也应该是可以被import的,而只用于import时,也不应有执行了主函数的副作用.主函数的功能应该被放在`main()`里.
 
-在Python中,`pydoc`和单元测试要求模块是可import的.所以代码在主程序执行前应进行`if __name__ == '__main__':`检查,以防止模块在import时被执行.
+在   python中,`pydoc`和单元测试要求模块是可import的.所以代码在主程序执行前应进行`if __name__ == '__main__':`检查,以防止模块在import时被执行.
 
-```Python
+```python
 def main():
     ...
 
@@ -1731,7 +1731,7 @@ if __name__ == '__main__':
 
 #### 3.19.1 基本规则
 
-* 熟悉[PEP-484](https://www.python.org/dev/peps/pep-0484/)
+* 熟悉[PEP-484](https://www.   python.org/dev/peps/pep-0484/)
 * 在方法中,只在必要时给`self`或者`cls`增加合适的类型信息.例如`@classmethod def create(cls: Type[T]) -> T: return cls()`
 * 如果其他变量或返回类型不定,使用`Any`
 * 不需要注释每个函数
@@ -1746,7 +1746,7 @@ if __name__ == '__main__':
 
 标注类型后,函数签名多数都要是"每行一个参数".
 
-```Python
+```python
 def my_method(self,
               first_var: int,
               second_var: Foo,
@@ -1756,14 +1756,14 @@ def my_method(self,
 
 优先在变量之间换行,而非其他地方(如变量名和类型注释之间).如果都能放在一行内,就放在一行.
 
-```Python
+```python
 def my_method(self, first_var: int) -> int:
   ...
 ```
 
 如果函数名,一直到最后的参数以及返回类型注释放在一行过长,那么分行并缩进4个空格.
 
-```Python
+```python
 def my_method(
     self, first_var: int) -> Tuple[MyLongType1, MyLongType1]:
   ...
@@ -1771,7 +1771,7 @@ def my_method(
 
 当返回值类型不能和最后一个参数放入同一行,比较好的处理方式是将参数分行并缩进4个空格,右括号和返回值类型换行并和`def`对齐.
 
-```Python
+```python
 def my_method(
     self, other_arg: Optional[MyLongType]
 ) -> Dict[OtherLongType, MyLongType]:
@@ -1791,7 +1791,7 @@ def my_method(self,
 
 就像上面的例子一样,尽量不要分割类型注释,不过有时类型注释太长无法放入一行,(那就尽量让子注释不要被分割).
 
-```Python
+```python
 def my_method(
     self,
     first_var: Tuple[List[MyLongType1],
@@ -1805,7 +1805,7 @@ def my_method(
 
 **Yes:**
 
-```Python
+```python
 def my_function(
     long_variable_name:
         long_module_name.LongTypeName,
@@ -1815,7 +1815,7 @@ def my_function(
 
 **No:**
 
-```Python
+```python
 def my_function(
     long_variable_name: long_module_name.
         LongTypeName,) -> None:
@@ -1825,7 +1825,7 @@ def my_function(
 #### 3.19.3 前置声明
 如果需要同一模块内还未定义的类名,例如需要类声明内部的类,或者需要在后续代码中定义的类,那么使用类名的字符串来代替.
 
-```Python
+```python
 class MyClass(object):
 
   def __init__(self,
@@ -1833,30 +1833,30 @@ class MyClass(object):
 ```
 
 #### 3.19.4 默认值
-参考[PEP-008](https://www.python.org/dev/peps/pep-0008/#other-recommendations),只有在同时需要类型注释和默认值的时候在`=`前后都加空格
+参考[PEP-008](https://www.   python.org/dev/peps/pep-0008/#other-recommendations),只有在同时需要类型注释和默认值的时候在`=`前后都加空格
 
 **Yes:**
 
-```Python
+```python
 def func(a: int = 0) -> int:
   ...
 ```
 
 **No:**
 
-```Python
+```python
 def func(a:int=0) -> int:
   ...
 ```
 
 #### 3.19.5 NoneType
-在Python系统中`NoneType`是一等类型,为了方便输入,`None`是`NoneType`的别名.如果一个参数可以是`None`,那么就需要声明!可以使用`Union`,但如果只有一个其他类型,那么使用`Optional`.
+在   python系统中`NoneType`是一等类型,为了方便输入,`None`是`NoneType`的别名.如果一个参数可以是`None`,那么就需要声明!可以使用`Union`,但如果只有一个其他类型,那么使用`Optional`.
 
 显式地使用`Optional`而非隐式地.PEP 484的早期版本容许`a: Text = None`被解释为`a: Optional[Text] = None`.但现在已经不推荐这样使用了.
 
 **Yes:**
 
-```Python
+```python
 def func(a: Optional[Text], b: Optional[Text] = None) -> Text:
   ...
 def multiple_nullable_union(a: Union[None, Text, int]) -> Text
@@ -1865,7 +1865,7 @@ def multiple_nullable_union(a: Union[None, Text, int]) -> Text
 
 **No:**
 
-```Python
+```python
 def nullable_union(a: Union[None, Text]) -> Text:
   ...
 def implicit_optional(a: Text = None) -> Text:
@@ -1877,7 +1877,7 @@ def implicit_optional(a: Text = None) -> Text:
 
 例如,如果带有模块名的类型名过长:
 
-```Python
+```python
 _ShortName = module_with_long_name.TypeWithLongName
 ComplexMap = Mapping[Text, List[Tuple[int, int]]]
 ```
@@ -1889,7 +1889,7 @@ ComplexMap = Mapping[Text, List[Tuple[int, int]]]
 
 `pytype`对于明确的报错有关闭选项(类似于lint):
 
-```Python
+```python
 # pytype: disable=attribute-error
 ```
 
@@ -1900,7 +1900,7 @@ ComplexMap = Mapping[Text, List[Tuple[int, int]]]
 
 在行尾增加以`# type`开头的注释
 
-```Python
+```python
 a = SomeUndecoratedFunction()  # type: Foo
 ```
 
@@ -1908,25 +1908,25 @@ a = SomeUndecoratedFunction()  # type: Foo
 
 在变量名和赋值之间用冒号和类型注明,和函数参数一致.
 
-```Python
+```python
 a: Foo = SomeUndecoratedFunction()
 ```
 
 #### 3.19.9 元组和列表
 不像是列表只能包含单一类型,元组可以既只有一种重复类型或者一组不同类型的元素,后者常用于函数返回.
 
-```Python
+```python
 a = [1, 2, 3]  # type: List[int]
 b = (1, 2, 3)  # type: Tuple[int, ...]
 c = (1, "2", 3.5)  # type: Tuple[int, Text, float]
 ```
 
 #### 3.19.10 TypeVars
-Python是有[泛型](https://www.python.org/dev/peps/pep-0484/#generics)的,工厂函数`TypeVar`是通用的使用方式.
+   python是有[泛型](https://www.   python.org/dev/peps/pep-0484/#generics)的,工厂函数`TypeVar`是通用的使用方式.
 
 例子:
 
-```Python
+```python
 from typing import List, TypeVar
 T = TypeVar("T")
 ...
@@ -1936,7 +1936,7 @@ def next(l: List[T]) -> T:
 
 TypeVar可以约束类型:
 
-```Python
+```python
 AddableType = TypeVar("AddableType", int, float, Text)
 def add(a: AddableType, b: AddableType) -> AddableType:
     return a + b
@@ -1953,15 +1953,15 @@ def check_length(x: AnyStr) -> AnyStr:
 ```
 
 #### 3.19.11 字符串类型
-注释字符串的合适类型是基于Python版本的.
+注释字符串的合适类型是基于   python版本的.
 
-对于只有Python3的代码,使用`str`,`Text`可以用但是在选择上保持一致.
+对于只有   python3的代码,使用`str`,`Text`可以用但是在选择上保持一致.
 
-对于Python2兼容的代码,用`Text`,在一些很罕见的情况下,`str`可能可用.当在不同Python版本之间返回值类型不同的时候通常是为了照顾兼容性.避免使用`unicode`,因为Python3中不存在.
+对于   python2兼容的代码,用`Text`,在一些很罕见的情况下,`str`可能可用.当在不同   python版本之间返回值类型不同的时候通常是为了照顾兼容性.避免使用`unicode`,因为   python3中不存在.
 
 **No:**
 
-```Python
+```python
 def py2_code(x: str) -> unicode:
   ...
 ```
@@ -1970,14 +1970,14 @@ def py2_code(x: str) -> unicode:
 
 **Yes:**
 
-```Python
+```python
 def deals_with_binary_data(x: bytes) -> bytes:
   ...
 ```
 
-对于Python2兼容,处理文本数据(Python中`str`或`unicode`,Python3中`str`)的代码,使用`Text`.对于只有Python3的代码,优先使用`str`.
+对于   python2兼容,处理文本数据(   python中`str`或`unicode`,   python3中`str`)的代码,使用`Text`.对于只有   python3的代码,优先使用`str`.
 
-```Python
+```python
 from typing import Text
 ...
 def py2_compatible(x: Text) -> Text:
@@ -1988,7 +1988,7 @@ def py3_only(x: str) -> str:
 
 如果既可以是byte也可以是文本,那么使用`Union`和合适的文本类型.
 
-```Python
+```python
 from typing import Text, Union
 ...
 def py2_compatible(x: Union[bytes, Text]) -> Union[bytes, Text]:
@@ -1999,18 +1999,18 @@ def py3_only(x: Union[bytes, str]) -> Union[bytes, str]:
 
 如果一个函数中所有的字符串类型始终一致,例如前文例子中返回值类型和参数类型是一致的,那么使用[`AnyStr`](https://google.github.io/styleguide/pyguide.html#typing-type-var)
 
-像这样写能够简化代码向Python3的迁移过程.
+像这样写能够简化代码向   python3的迁移过程.
 
 #### 3.19.12 typing的import
 对于从`typing`模块import的类,要import类本身.明确的允许在一行内从`typing`模块import多个特定的类,如
 
-```Python
+```python
 from typing import Any, Dict, Optional
 ```
 
-这种从`typing`模块import的方式会向命名空间内增加额外项,`typing`中的任何命名都应该和关键字同等对待并且不在你的Python代码中定义,typed or not(译者推测文无论是否引入).如果和已有的命名冲突,使用`import x as y`来import.
+这种从`typing`模块import的方式会向命名空间内增加额外项,`typing`中的任何命名都应该和关键字同等对待并且不在你的   python代码中定义,typed or not(译者推测文无论是否引入).如果和已有的命名冲突,使用`import x as y`来import.
 
-```Python
+```python
 from typing import Any as AnyType
 ```
 
@@ -2018,13 +2018,13 @@ from typing import Any as AnyType
 只在运行时一定要避免进行类型检查的情况下使用条件import.不鼓励使用这种模式.鼓励使用其他替代方式诸如重构代码以容许顶级import.
 
 只用于类型注释的import可以被归于`if TYPE_CHECKING:`代码块中.
-* 条件import的类型应被视为字符串引用,以和Python3.6兼容(在Python3.6中,注释表达式实际上被赋值的).
+* 条件import的类型应被视为字符串引用,以和   python3.6兼容(在   python3.6中,注释表达式实际上被赋值的).
 * 只有单独用于类型注释的实例才能在这里定义,包括了别名.否则将会报运行错误因为在运行时这些模块不会被引用.
 * 代码块应该紧跟在正常import后面.
 * 在类型import后不应有空行
 * 按照正常import顺序对这一块代码进行排序
 
-```Python
+```python
 import typing
 if typing.TYPE_CHECKING:
     import sketch
@@ -2036,7 +2036,7 @@ def f(x: "sketch.Sketch"): ...
 
 将造成循环依赖的模块替换为`Any`并赋予一个有意义的[别名](https://google.github.io/styleguide/pyguide.html#typing-aliases)并使用从这个模块导入的真实类名(因为任何`Any`的属性都是`Any`).别名的定义用和最后一行import用一行空行分隔.
 
-```Python
+```python
 from typing import Any
 
 some_mod = Any  # some_mod.py imports this module.
@@ -2047,13 +2047,13 @@ def my_method(self, var: some_mod.SomeType) -> None:
 ```
 
 #### 3.19.15  泛型
-当注释的时候,优先泛型类型专有类型参数,否则[泛型的参数会被认为是`Any`](https://www.python.org/dev/peps/pep-0484/#the-any-type).
+当注释的时候,优先泛型类型专有类型参数,否则[泛型的参数会被认为是`Any`](https://www.   python.org/dev/peps/pep-0484/#the-any-type).
 
-```Python
+```python
 def get_names(employee_ids: List[int]) -> Dict[int, Any]:
   ...
 ```
-```Python
+```python
 # These are both interpreted as get_names(employee_ids: List[Any]) -> Dict[Any, Any]
 def get_names(employee_ids: list) -> Dict:
   ...
@@ -2064,12 +2064,12 @@ def get_names(employee_ids: List) -> Dict:
 
 如果泛型最佳的参数类型是`Any`也将其显式地表示出来.但是在很多情况下[`TypeVar`](https://google.github.io/styleguide/pyguide.html#typing-type-var)可能更合适.
 
-```Python
+```python
 def get_names(employee_ids: List[Any]) -> Dict[Any, Text]:
 """Returns a mapping from employee ID to employee name for given IDs."""
 ```
 
-```Python
+```python
 T = TypeVar('T')
 def get_names(employee_ids: List[T]) -> Dict[T, Text]:
 """Returns a mapping from employee ID to employee name for given IDs."""
